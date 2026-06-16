@@ -1,0 +1,25 @@
+[project]
+name = "battleship-server"
+version = "0.1.0"
+description = "Lightweight byte-protocol TCP Battleship server for 8051 + ESP32 player nodes"
+readme = "README.md"
+requires-python = ">=3.10"
+# No third-party dependencies: the server uses only the Python standard library
+# (asyncio + socket). This keeps the footprint tiny and predictable.
+dependencies = []
+
+[project.scripts]
+# Installed entry point. After `uv sync` you can run `uv run battleship-server`.
+battleship-server = "battleship.server:main"
+battleship-client = "battleship.test_client:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/battleship"]
+
+[tool.uv]
+# Nothing special required; listed so `uv` recognizes this as a managed project.
+package = true
